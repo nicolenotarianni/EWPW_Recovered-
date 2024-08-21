@@ -35,6 +35,7 @@ y <- data.frame("CID" = ewpw1$CID, "Use" = ewpw1$Use, "Alts" = ewpw1$Alts)
 ytest <- reshape(y, direction = "wide", idvar = "CID", timevar = "Alts")
 
 Z <- array(NA, dim=c(npred, nchsets, nalts)) 
+Z[,-182,]
 for(i in 1:T){               
   for(j in 1:npred){        
     Z[j, chsets[i], alts[i]] <- X1[i, j] 
