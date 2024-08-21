@@ -26,7 +26,7 @@ cor(X1) #running a correlation matrix to see which variables are the least corre
 # delineate the matrix of variables
 X1 <- cbind(p90_100m, percfirst5to1_100m, TopRug30m_p95_100m)
 X1 <- scale(X1) 
-npred <- ncol(X1) 
+npred <- ncol(X1) #number of predictor variables 
 
 sub_id <- subset(ewpw1, Alts==20)$SID #assigning choice set to each bird
 
@@ -66,9 +66,9 @@ model{
     } 
       
   for(j in 1:npred){        
-    mu[j] ~ dnorm(0, 0.01)  # mu, the mean of all betas, un-informative prior distribution; 
-    sig[j] ~ dunif(0, 100) # we are leaving tau and sigma be determined by the model
-    tau[j] <- 1/(sig[j] * sig[j]) # these describe the among-bird variation
+    mu[j] ~ dnorm(0, 0.01)  
+    sig[j] ~ dunif(0, 100) 
+    tau[j] <- 1/(sig[j] * sig[j]) 
     }
 
   for(i in 1:nchsets){                          
