@@ -49,7 +49,7 @@ jags.data <- list(npred = npred,
                   alts = as.integer(alts),
                   nalts = as.integer(nalts),
                   T = as.integer(T),
-                  y = as.matrix(ytest[,2:6]),
+                  y = as.matrix(ytest[,2:21]),
                   X1 = X1,
                   Z = Z)
 params <- c("mu", "beta")
