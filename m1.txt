@@ -1,0 +1,25 @@
+
+model{
+  
+  for(a in 1:ninds){                    
+    for(j in 1:npred){                
+      beta[a,j] ~ dnorm(mu[j], tau[j])  
+      }
+    } 
+      
+  for(j in 1:npred){        
+    mu[j] ~ dnorm(0, 0.01)  # mu, the mean of all betas, un-informative prior distribution; 
+    sig[j] ~ dunif(0, 100) # we are leaving tau and sigma be determined by the model
+    tau[j] <- 1/(sig[j] * sig[j]) # these describe the among-bird variation
+    }
+
+  for(i in 1:nchsets){                          
+    y[i, 1:nalts] ~ dmulti(p[i, 1:nalts], 1)
+
+    for(k in 1:nalts){ 
+      log(phi[i, k]) <- inprod(beta[sub_id[i],],Z[,i,k]) 
+      p[i,k] <- phi[i,k] / sum(phi[i,1:nalts]) 
+      }
+    }
+}
+

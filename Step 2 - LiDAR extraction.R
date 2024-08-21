@@ -29,3 +29,6 @@ ewpw1$perc5to1_100 <- perc5to1_100m
 ewpw1$percfirst5to1_100 <- percfirst5to1_100m
 ewpw1$rugosity_100 <- TopRug30m_p95_100m
 
+#export CSV
+write.csv(ewpw1, "./RecoveredEWPWptsw20randsandCOVS.csv", row.names = FALSE)
+
